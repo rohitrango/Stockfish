@@ -40,8 +40,8 @@ using namespace std;
 
 extern vector<string> setup_bench(const Position&, istream&);
 
-// FEN string of the initial position, normal chess
-const char* StartFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+  // FEN string of the initial position, normal chess
+  const char* StartFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 // Command to automatically generate a game record
 #if defined (EVAL_LEARN)

@@ -743,7 +743,7 @@ net:
 
 # clean binaries and objects
 objclean:
-	@rm -f $(EXE) *.o ./syzygy/*.o ./learn/*.o ./extra/*.o ./eval/*.o ./nnue/*.o ./nnue/features/*.o
+	@rm -f $(EXE) *.o ./syzygy/*.o ./nnue/*.o ./nnue/features/*.o ./learn/*.o ./extra/*.o ./eval/*.o
 
 # clean auxiliary profiling files
 profileclean:
