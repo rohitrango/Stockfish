@@ -24,6 +24,7 @@
 #include <sstream>
 
 #include "evaluate.h"
+#include "global_options.h"
 #include "misc.h"
 #include "movegen.h"
 #include "movepick.h"
@@ -67,8 +68,6 @@ namespace {
   Value futility_margin(Depth d, bool improving) {
     return Value(223 * (d - improving));
   }
-
-  bool training;
 
   // Reductions lookup table, initialized at startup
   int Reductions[MAX_MOVES]; // [depth or moveNumber]
@@ -195,8 +194,6 @@ void Search::init() {
 
   for (int i = 1; i < MAX_MOVES; ++i)
       Reductions[i] = int((22.0 + std::log(Threads.size())) * std::log(i));
-
-  training = Options["Training"];
 }
 
 
@@ -1011,7 +1008,9 @@ moves_loop: // When in check, search starts from here
 
       // Step 12. Pruning at shallow depth (~200 Elo)
       if (  !rootNode
-          && !(training && PvNode)
+#ifdef EVAL_LEARN
+          && !(!globalOptions.prune_at_shallow_depth_on_pv_node && PvNode)
+#endif
           && pos.non_pawn_material(us)
           && bestValue > VALUE_TB_LOSS_IN_MAX_PLY)
       {
