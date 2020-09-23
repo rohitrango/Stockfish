@@ -16,14 +16,14 @@ inline Square orient(Color perspective, Square s) {
 
 // Index of a feature for a given king position.
 IndexType K::MakeIndex(Color perspective, Square s, Color king_color) {
-  return IndexType(orient(perspective, s) + bool(perspective ^ king_color) * 64);
+  return IndexType(orient(perspective, s) + bool(king_color) * 64);
 }
 
 // Get a list of indices with a value of 1 among the features
 void K::AppendActiveIndices(
     const Position& pos, Color perspective, IndexList* active) {
-  for (auto color : Colors) {
-    active->push_back(MakeIndex(perspective, pos.square<KING>(color), color));
+  for (auto king_color : Colors) {
+    active->push_back(MakeIndex(perspective, pos.square<KING>(king_color), king_color));
   }
 }
 
