@@ -2,3 +2,4 @@
 src/stockfish
 *nnue
 *.depend
+src/evalsave
