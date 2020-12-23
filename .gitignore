@@ -3,3 +3,4 @@ src/stockfish
 *nnue
 *.depend
 src/evalsave
+src/trainingdata
